@@ -1,0 +1,47 @@
+# Archivos y directorios de Keycloak
+/keycloak-standalone/
+/keycloak-standalone-*/
+/keycloak-distribution/
+/standalone/
+/standalone-*/
+/theme/keycloak/
+/theme/keycloak-*/
+/keycloak.log
+/keycloak-server.log
+
+# Archivos de configuración con potencial información sensible
+standalone/configuration/standalone.xml
+standalone/configuration/standalone-ha.xml
+
+# Archivos y directorios generados
+/target/
+/dist/
+/tmp/
+/log/
+/*.log
+/*.pid
+/*.lock
+/*.bak
+/*.swp
+
+# Archivos de configuración de PostgreSQL (es probable que no los tengas en el mismo repositorio, pero por precaución)
+/pgdata/
+/postgres_data/
+/postgresql.conf
+/pg_hba.conf
+/pg_ident.conf
+
+# Archivos generales que se deben ignorar
+.DS_Store
+*.tmp
+*.bak
+*.swp
+*.class
+*.iml
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/

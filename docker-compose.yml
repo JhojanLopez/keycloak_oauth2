@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+  keycloak_db:
+    image: postgres:latest
+    container_name: keycloak_db
+    networks:
+      - keycloak_security
+    env_file:
+      - ./envs/database.env
+    #volumes:
+    #  - ./postgres_data:/var/lib/postgresql/data
+
+  keycloak:
+    build: .
+    container_name: keycloak
+    networks:
+      - keycloak_security
+  #  entrypoint: /docker-entrypoint-initdb.d/custom-entrypoint.sh
+    command:
+      - "start-dev --proxy=edge"
+    env_file:
+      - ./envs/keycloak.env
+    volumes:
+      - ./themes:/custom-themes
+      - ./entrypoint.sh:/docker-entrypoint-initdb.d/custom-entrypoint.sh
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    depends_on:
+      - keycloak_db
+
+#volumes:
+#  keycloak_data:
+#    driver: local
+#  postgres_data:
+#    driver: local
+
+networks:
+  keycloak_security:
